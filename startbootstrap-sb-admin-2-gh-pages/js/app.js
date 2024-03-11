@@ -1,4 +1,4 @@
-//MODAL EJECUTADORES
+//MODAL EJECUTADORES - PACIENTES
 $("#botonpaciente").on("click",function(){
 
     $("#modal-date").modal();
@@ -8,6 +8,11 @@ $("#botoneditar").on("click",function(){
 
   $("#modal-edit").modal();
 })
+
+//MODAL EJECUTADORES - MEDICOS
+$("#botonagregarmedico").on("click", function() {
+  $("#modal-insert-medico").modal();
+});
 
 $('.delete-btn').on('click', function() {
     const swalWithBootstrapButtons = Swal.mixin({
@@ -202,45 +207,7 @@ $('.delete-btn').on('click', function() {
     });
   }
 
-  function eliminarEspecialidad(enlace) {
-    const fila = enlace.closest('tr');
-    const especialidadNombre = fila.children[0].textContent; // Obtén el contenido del primer td (Nombre de la especialidad)
-  
-    const swalWithBootstrapButtons = Swal.mixin({
-      customClass: {
-        confirmButton: "btn btn-success mr-2",
-        cancelButton: "btn btn-danger mr-2"
-      },
-      buttonsStyling: false
-    });
-  
-    swalWithBootstrapButtons.fire({
-      title: "¿Estás seguro?",
-      text: `Estás a punto de borrar la especialidad: ${especialidadNombre}`,
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonText: "Sí, eliminar especialidad",
-      cancelButtonText: "No, cancelar",
-      reverseButtons: true
-    }).then((result) => {
-      if (result.isConfirmed) {
-        // Aquí puedes agregar la lógica para borrar la especialidad si es necesario
-        fila.remove(); // Elimina la fila de la tabla en este ejemplo
-        swalWithBootstrapButtons.fire({
-          title: "Especialidad Eliminada",
-          text: "La especialidad ha sido eliminada.",
-          icon: "success"
-        });
-      } else if (result.dismiss === Swal.DismissReason.cancel) {
-        swalWithBootstrapButtons.fire({
-          title: "Cancelado",
-          text: "La especialidad está a salvo :)",
-          icon: "error"
-        });
-      }
-    });
-  }
-
+ 
 //EDITAR PACIENTE
 $(document).ready(function() {
   $(".botoneditar").on("click", function() {
@@ -259,3 +226,4 @@ $(document).ready(function() {
       $('#modal-edit').modal('show');
   });
 });
+

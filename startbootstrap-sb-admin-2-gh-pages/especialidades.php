@@ -1,3 +1,6 @@
+<?php
+require "php/db_conect.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,7 +12,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Gestion de Medicos</title>
+    <title>Catalogo de Especialidades</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -23,7 +26,7 @@
     <!-- Custom styles for this template -->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
-     <!--Sweet Alert Alertas Dinamicas-->
+    <!--Sweet Alert Alertas Dinamicas-->
      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!--Jquery-->
@@ -123,7 +126,7 @@
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Listado de Medicos</h6>
-                        <a class="collapse-item" href="medicos.html">Mostrar</a>
+                        <a class="collapse-item" href="medicos.php">Mostrar</a>
                     </div>
                 </div>
             </li>
@@ -146,16 +149,18 @@
             
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="especialidades.html">
+                <a class="nav-link" href="especialidades.php">
                     <i class="bi bi-clipboard2-pulse-fill"></i>
                     <span>Especialidades Medicas</span></a>
             </li>
+
             <!-- Nav Item - Consultorios -->
             <li class="nav-item">
                 <a class="nav-link" href="consultorio.html">
                     <i class="bi bi-building-fill-add"></i>
                     <span>Consultorios</span></a>
             </li>
+
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -292,83 +297,63 @@
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h4 class="m-0 font-weight-bold text-primary">Lista de Medicos</h4>
+                            <h4 class="m-0 font-weight-bold text-primary">Lista de Especialidades</h4>
                             <br>
-                            <a class="btn btn-success btn-icon-split" id="botoncita">
+                            <a class="btn btn-success btn-icon-split" id="boton-especialidad">
                                 <span class="icon text-white">
-                                    <i class="bi bi-person-fill-add"></i>
+                                    <i class="bi bi-bag-plus-fill"></i>
                                 </span>
-                                <span class="text">Agregar Medico</span>
+                                <span class="text">Agregar Especialidad</span>
                             </a>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
-                                        <tr>
-                                            <th>Cedula</th>
-                                            <th>Nombre</th>
-                                            <th>Telefono</th>
-                                            <th>Sexo</th>
-                                            <th>Fecha de Nacimiento</th>
+                                        <tr data-id='<?php echo $row['ID_ESPECIALIDAD'] ?>'data-nombre='<?php echo $row['NOMBRE_ESPEC']; ?>'>
+                                            <th>Id_Especialidad</th>
                                             <th>Especialidad</th>
-                                            <th>Correo</th>
                                             <th>Fecha de Registro</th>
-                                            <th>Acciones</th>
+                                            <th>Acciones</th> 
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                            <th>Cedula</th>
-                                            <th>Nombre</th>
-                                            <th>Telefono</th>
-                                            <th>Sexo</th>
-                                            <th>Fecha de Nacimiento</th>
+                                            <th>Id_Especialidad</th>
                                             <th>Especialidad</th>
-                                            <th>Correo</th>
                                             <th>Fecha de Registro</th>
-                                            <th>Acciones</th>
+                                            <th>Acciones</th> 
                                         </tr>
                                     </tfoot>
                                     <tbody>
-                                        <tr>
-                                            <td>01234567</td>
-                                            <td>Gutierrez Ramirez Gerardo</td>
-                                            <td>5540991432</td>
-                                            <td>Masculino</td>
-                                            <td>26/07/2004</td>
-                                            <td>Odontologia</td>
-                                            <td>guti@gmail.com</td>
-                                            <td>20/02/2024</td>
-                                            <td>
-                                                <a href="#" class="btn btn-warning">
-                                                    <i class="bi bi-pencil-square"></i>
-                                                </a>
-                                                <a href="#" class="btn btn-danger delete-medico-btn" onclick="eliminarMedico(this)">
-                                                    <i class="bi bi-trash-fill"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>012565347</td>
-                                            <td>Jose Angel Nuñez</td>
-                                            <td>5532145263</td>
-                                            <td>Masculino</td>
-                                            <td>27/06/1999</td>
-                                            <td>Cardiologia</td>
-                                            <td>joseang@gmail.com</td>
-                                            <td>20/02/2024</td>
-                                            <td style="white-space: nowrap;">
-                                                <a href="#" class="btn btn-warning">
-                                                    <i class="bi bi-pencil-square"></i>
-                                                </a>
-                                                <a href="#" class="btn btn-danger delete-medico-btn" onclick="eliminarMedico(this)">
-                                                    <i class="bi bi-trash-fill"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
+                                    <?php
+    // Crear consulta SQL
+    $sql = "SELECT * FROM especialidades";
 
-                                    </tbody>
+    // Ejecutar consulta SQL
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0):
+    // Iterar sobre los resultados
+    while($row = $result->fetch_assoc()): ?>
+        <tr>
+            <td><?php echo $row['ID_ESPECIALIDAD']; ?></td>
+            <td><?php echo $row['NOMBRE_ESPEC']; ?></td>
+            <td><?php echo $row['FECHA_DE_REGISTRO']; ?></td>
+            <td style='white-space: nowrap;'>
+                <a href='#' class='btn btn-warning boton-editar' data-nombre="<?php echo $row['NOMBRE_ESPEC']; ?>">
+                    <i class='bi bi-pencil-square'></i>
+                </a>
+                <a href="#" onclick="eliminarEspecialidad('<?php echo $row['ID_ESPECIALIDAD'] ?>','<?php echo $row['NOMBRE_ESPEC'] ?>'); return false;" class='btn btn-danger delete-especialidad-btn'>
+                <i class='bi bi-trash-fill'></i>
+                </a>
+            </td>
+        </tr>
+    <?php endwhile;
+else: ?>
+    <tr><td colspan='3'>No hay registros</td></tr>
+<?php endif; ?>
+</tbody>
                                 </table>
                             </div>
                         </div>
@@ -400,59 +385,52 @@
         </div>
     </div>
 
-    <!--Agregar Medicos Modal-->
+    <!--Agregar Especialidad Modal-->
 
-    <div class="modal fade" id="modal-date" tabindex="-1" role="dialog">
+    <div class="modal fade" id="modal-insert-especialidad" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">Agregar Nuevos Medicos</h4>
+                    <h4 class="modal-title">Agregar Nueva Especialidad</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">&times;</span></button>
                 </div>
                 <div class="modal-body">
-                    <form>
-                        <span>Cedula (7 u 8 digitos)*</span>
-                        <input type="number" class="form-control" oninput="javascript: if (this.value.length > 8) this.value = this.value.slice(0, 8);"
-                        pattern="[0-8]*" title="Ingrese solo números">
+                    <form action="insert-especialidades.php" method="POST" enctype="multipart/form-data">
 
-                        <span>Nombre *</span>
-                        <input type="text" class="form-control">
-
-                        <span>Telefono *</span>
-                        <input type="number" class="form-control"
-                            oninput="javascript: if (this.value.length > 10) this.value = this.value.slice(0, 10);"
-                            pattern="[0-9]*" title="Ingrese solo números">
-                            
-                        <span>Sexo</span>
-                        <select class="form-control">
-                            <option disabled>--Selecciona una Opcion---</option>
-                            <option>Masculino</option>
-                            <option>Femenino</option>
-                            <option>Otro</option>
-                        </select>
-
-                        <span>Fecha de nacimiento</span>
-                        <input type="date" class="form-control">
-
-                        <span>Especialidad</span>
-                        <select class="form-control">
-                            <option disabled>--Selecciona una Opcion---</option>
-                            <option>Odontologia</option>
-                            <option>Cardiologia</option>
-                        </select>
-
-                        <span>Correo *</span>
-                        <input type="text" class="form-control">
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-success">Agregar Medico</button>
-                </div>
-            </div><!-- /.modal-content -->
+                        <span>Nombre Especialidad *</span>
+                        <input type="text" class="form-control" name="nombre_especialidad">
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                        <input type="submit" class="btn btn-success" value="Agregar Especialidad">
+                    </div>
+                     </form>
+                </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
+
+    <!--Editar Especialidad Modal-->
+<div class="modal fade" id="modal-edit" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Editar Especialidad</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span> </button>
+            </div>
+            <div class="modal-body">
+                <form action="update-especialidades.php" method="POST" enctype="multipart/form-data">
+
+                    <span>Nombre Especialidad *</span>
+                    <input type="text" class="form-control" name="nombre_especialidad" id="nombre_especialidad">
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                    <input type="submit" class="btn btn-success" value="Guardar Cambios">
+                </div>
+                </form>
+            </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
@@ -470,11 +448,8 @@
 
     <!-- Page level custom scripts -->
     <script src="js/demo/datatables-demo.js"></script>
-
-
+    <script src="js/modal-especialidades.js"></script>
     <script src="js/app.js"></script>
-
-
 </body>
 
 </html>

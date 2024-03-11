@@ -126,7 +126,7 @@ require "php/db_conect.php";
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Listado de Medicos</h6>
-                        <a class="collapse-item" href="medicos.html">Mostrar</a>
+                        <a class="collapse-item" href="medicos.php">Mostrar</a>
                     </div>
                 </div>
             </li>
@@ -149,7 +149,7 @@ require "php/db_conect.php";
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="especialidades.html">
+                <a class="nav-link" href="especialidades.php">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Especialidades Medicas</span></a>
             </li>
