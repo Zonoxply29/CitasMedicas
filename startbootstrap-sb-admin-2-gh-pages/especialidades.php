@@ -156,7 +156,7 @@ require "php/db_conect.php";
 
             <!-- Nav Item - Consultorios -->
             <li class="nav-item">
-                <a class="nav-link" href="consultorio.html">
+                <a class="nav-link" href="consultorio.php">
                     <i class="bi bi-building-fill-add"></i>
                     <span>Consultorios</span></a>
             </li>
@@ -341,7 +341,7 @@ require "php/db_conect.php";
             <td><?php echo $row['NOMBRE_ESPEC']; ?></td>
             <td><?php echo $row['FECHA_DE_REGISTRO']; ?></td>
             <td style='white-space: nowrap;'>
-                <a href='#' class='btn btn-warning boton-editar' data-nombre="<?php echo $row['NOMBRE_ESPEC']; ?>">
+                <a href='#' class='btn btn-warning boton-editar' data-nombre="<?php echo $row['NOMBRE_ESPEC'];  ?>">
                     <i class='bi bi-pencil-square'></i>
                 </a>
                 <a href="#" onclick="eliminarEspecialidad('<?php echo $row['ID_ESPECIALIDAD'] ?>','<?php echo $row['NOMBRE_ESPEC'] ?>'); return false;" class='btn btn-danger delete-especialidad-btn'>

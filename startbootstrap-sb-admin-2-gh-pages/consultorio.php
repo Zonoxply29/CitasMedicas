@@ -3,6 +3,7 @@ require "php/db_conect.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
     <meta charset="utf-8">
@@ -11,7 +12,7 @@ require "php/db_conect.php";
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Gestion de Medicos</title>
+    <title>Catalogo de Especialidades</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -25,11 +26,11 @@ require "php/db_conect.php";
     <!-- Custom styles for this template -->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
-     <!--Sweet Alert Alertas Dinamicas-->
-     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
     <!--Jquery-->
     <script src="vendor/jquery/jquery.js"></script>
+    
+    <!--Sweet Alert Alertas Dinamicas-->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-- Custom styles for this page -->
     <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
@@ -141,7 +142,7 @@ require "php/db_conect.php";
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Listado de Asistentes</h6>
-                        <a class="collapse-item" href="asistentes.html">Mostrar</a>
+                        <a class="collapse-item" href="asistentes.php">Mostrar</a>
                     </div>
                 </div>
             </li>
@@ -149,15 +150,17 @@ require "php/db_conect.php";
             <!-- Nav Item - Charts -->
             <li class="nav-item">
                 <a class="nav-link" href="especialidades.php">
-                    <i class="bi bi-clipboard2-pulse-fill"></i>
+                    <i class="fas fa-fw fa-chart-area"></i>
                     <span>Especialidades Medicas</span></a>
             </li>
+
             <!-- Nav Item - Consultorios -->
             <li class="nav-item">
                 <a class="nav-link" href="consultorio.php">
                     <i class="bi bi-building-fill-add"></i>
                     <span>Consultorios</span></a>
             </li>
+
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -294,83 +297,66 @@ require "php/db_conect.php";
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h4 class="m-0 font-weight-bold text-primary">Lista de Medicos</h4>
+                            <h4 class="m-0 font-weight-bold text-primary">Lista de Consultorios</h4>
                             <br>
-                            <a class="btn btn-success btn-icon-split"  id="botonagregarmedico" >
+                            <a class="btn btn-success btn-icon-split" id="boton-consultorio">
                                 <span class="icon text-white">
-                                    <i class="bi bi-person-fill-add"></i>
+                                    <i class="bi bi-building-fill-add"></i>
                                 </span>
-                                <span class="text">Agregar Medico</span>
+                                <span class="text">Agregar Consultorio</span>
                             </a>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>Cedula</th>
-                                            <th>Nombre</th>
-                                            <th>Telefono</th>
-                                            <th>Sexo</th>
-                                            <th>Fecha de Nacimiento</th>
-                                            <th>Especialidad</th>
-                                            <th>Correo</th>
-                                            <th>Asignar Horario</th>
-                                            <th>Fecha de Registro</th>
+                                            <th>Numero de Consultorio</th>
+                                            <th>Disponibilidad</th> 
                                             <th>Acciones</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                            <th>Cedula</th>
-                                            <th>Nombre</th>
-                                            <th>Telefono</th>
-                                            <th>Sexo</th>
-                                            <th>Fecha de Nacimiento</th>
-                                            <th>Especialidad</th>
-                                            <th>Correo</th>
-                                            <th>Asignar Horario</th>
-                                            <th>Fecha de Registro</th>
+                                            <th>Numero de Consultorio</th>
+                                            <th>Disponibilidad</th> 
                                             <th>Acciones</th>
                                         </tr>
                                     </tfoot>
-                                    <tbody>
-                                        <?php
-                                  // Crear consulta SQL
-                                  $sql = "SELECT medico.*, especialidades.NOMBRE_ESPEC FROM medico INNER JOIN especialidades ON medico.ESPECIALIDAD = especialidades.ID_ESPECIALIDAD";  
-                                        
-                                // Ejecutar consulta SQL
-                                    $result = $conn->query($sql);
+                                    <?php
+                                // Crear consulta SQL
+                                $sql = "SELECT * FROM consultorio";
 
-                                    if ($result->num_rows > 0):
-                                        // Iterar sobre los resultados
-                                        while($row = $result->fetch_assoc()): ?>
-                                            <tr>
-                                                <td><?php echo $row['ID_MEDICO']; ?></td>
-                                                <td><?php echo $row['NOMBRE']; ?></td>
-                                                <td><?php echo $row['TELEFONO']; ?></td>
-                                                <td><?php echo $row['SEXO']; ?></td>
-                                                <td><?php echo $row['FECHA_DE_NACIMIENTO']; ?></td>
-                                                <td><?php echo $row['NOMBRE_ESPEC']; ?></td>
-                                                <td><?php echo $row['CORREO']; ?></td>
-                                                <td style="white-space: nowrap; text-align: center;"><a href="horario-medicos.php?id_medico=<?php echo $row['ID_MEDICO']; ?> &nombre_medico=<?php echo urlencode($row['NOMBRE']); ?>" class="btn btn-info">
-                                                <i class="bi bi-clock-fill"></i>
-                                                </a></td>
-                                                <td><?php echo $row['FECHA_REGISTRO']; ?></td>
-                                                <td style='white-space: nowrap;'>
-                                                    <a href='#' class='btn btn-warning botoneditar' data-id="<?php echo $row['ID_MEDICO']; ?>" data-nombre="<?php echo $row['NOMBRE']; ?>" data-especialidad="<?php echo $row['ESPECIALIDAD']; ?>" data-telefono="<?php echo $row['TELEFONO']; ?>" data-correo="<?php echo $row['CORREO']; ?>">
-                                                        <i class='bi bi-pencil-square'></i>
-                                                    </a>
-                                                    <a href="#" onclick="eliminarMedico('<?php echo $row['ID_MEDICO'] ?>','<?php echo $row['NOMBRE'] ?>'); return false;" class='btn btn-danger delete-medico-btn'>
-                                                    <i class='bi bi-trash'></i>
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                        <?php endwhile;
-                                    else: ?>
-                                        <tr><td colspan='7'>No hay registros</td></tr>
-                                    <?php endif; ?>
+                                // Ejecutar consulta SQL
+                                $result = $conn->query($sql);
+
+                                if ($result->num_rows > 0):
+                                // Iterar sobre los resultados
+                                while($row = $result->fetch_assoc()): ?>
+                                    <tr>
+                                        <td><?php echo $row['NUM_CONSULTORIO']; ?></td>
+                                        <td><?php echo $row['DISPONIBILIDAD']; ?></td>
+                                        <td style='white-space: nowrap;'>
+                                            <a href='#' class='btn btn-warning editar-consultorio' data-numero="<?php echo $row['NUM_CONSULTORIO']; ?>" data-disponibilidad="<?php echo $row['DISPONIBILIDAD']; ?>">
+                                                <i class='bi bi-pencil-square'></i>
+                                            </a>
+                                            <?php
+                                        if ($row['DISPONIBILIDAD'] == 'Disponible') {
+                                            echo "<a href='#' class='btn btn-danger delete-consultorio-btn' onclick=\"alert('El consultorio debe estar fuera de servicio para eliminarlo.'); return false;\" disabled>
+                                        <i class='bi bi-trash-fill'></i>
+                                         </a>";
+                                        } else {
+                                        echo "<a href='#' onclick=\"eliminarConsultorio('{$row['NUM_CONSULTORIO']}'); return false;\" class='btn btn-danger delete-consultorio-btn'>
+                                        <i class='bi bi-trash-fill'></i>
+                                        </a>";
+                                        }
+                                        ?>
+                                        </td>
+                                    </tr>
+                                <?php endwhile;
+                            else: ?>
+                                <tr><td colspan='3'>No hay registros</td></tr>
+                            <?php endif; ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -403,86 +389,64 @@ require "php/db_conect.php";
         </div>
     </div>
 
-    <!--Agregar Medicos Modal-->
+    <!--Agregar Consultorio Modal-->
 
-    <div class="modal fade" id="modal-insert-medico" tabindex="-1" role="dialog">
+    <div class="modal fade" id="modal-insert-consultorio" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">Agregar Nuevo Medico</h4>
+                    <h4 class="modal-title">Agregar Nuevo Consultorio</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">&times;</span></button>
                 </div>
                 <div class="modal-body">
-                    <form action="insert-medicos.php" method="POST" enctype="multipart/form-data">
-                        <span>Cedula (7 u 8 digitos)*</span>
-                        <input type="number" class="form-control" oninput="javascript: if (this.value.length > 8) this.value = this.value.slice(0, 8);"
-                        pattern="[0-8]*" name="cedula" title="Ingrese solo números">
-
-                        <span>Nombre *</span>
-                        <input type="text" class="form-control" name="nombre">
-
-                        <span>Telefono *</span>
-                        <input type="number" class="form-control"
-                            oninput="javascript: if (this.value.length > 10) this.value = this.value.slice(0, 10);"
-                            pattern="[0-9]*" title="Ingrese solo números" name="telefono">
-                            
-                        <span>Sexo</span>
-                        <select class="form-control" name="sexo">
+                <form action="insert-consultorio.php" method="POST" enctype="multipart/form-data">
+                    <form>
+                        <span>Numero de Consultorio *</span>
+                        <input type="number" class="form-control" name="numero_consultorio">
+                        <span>Disponibilidad</span>
+                        <select class="form-control" name="disponibilidad">
                             <option disabled>--Selecciona una Opcion---</option>
-                            <option>Masculino</option>
-                            <option>Femenino</option>
-                            <option>Otro</option>
-                        </select>
-
-                        <span>Domicilio *</span>
-                        <input type="text" class="form-control" name="domicilio">
-
-                        <span>Fecha de nacimiento</span>
-                        <input type="date" class="form-control" name="fecha_nacimiento">
-
-                        <?php 
-                            // Consulta SQL para obtener todas las especialidades
-                        $sql = "SELECT ID_ESPECIALIDAD, NOMBRE_ESPEC FROM especialidades";
-                        
-                        $result = $conn->query($sql);
-
-                        echo '<span>Especialidad</span>';
-                        echo '<select class="form-control" name="especialidad">';
-                        echo '<option disabled>--Selecciona una Opcion---</option>';
-                        
-                        if ($result->num_rows > 0) {
-                            // Salida de cada fila
-                            while($row = $result->fetch_assoc()) {
-                              $especialidades[] = $row;
-                            }
-                          } else {
-                            echo "0 results";
-                          }
-                          
-                          foreach ($especialidades as $especialidad) {
-                              echo '<option value="'.$especialidad["ID_ESPECIALIDAD"].'">'.$especialidad["NOMBRE_ESPEC"].'</option>';
-                          }
-                          
-                          echo '</select>';
-                        ?>
-                        
-                        <span>Correo *</span>
-                        <input type="text" class="form-control" name="correo">
-
-                        <span>Contraseña*</span>
-                        <input type="text" class="form-control" name="contrasena">
-
-                        <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                    <input type="submit" class="btn btn-success" value="Agregar Medico">
-                    </div>
-                    </form>
+                            <option value="Disponible">Disponible</option>
+                            <option value="Fuera De Servicio">Fuera de Servicio</option>
+                        </select>        
                 </div>
-               
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                    <input type="submit" class="btn btn-success" value="Agregar Consultorio">
+                </div>
+                </form>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
+    
+ <!--Editar Consultorio Modal-->
+ <div class="modal fade" id="modal-editar-consultorio" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Editar Consultorio</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span> </button>
+            </div>
+            <div class="modal-body">
+                <form action="edit-consultorio.php" method="POST" enctype="multipart/form-data">
+                    <span> Numero de Consultorio</span>
+                    <input type="text" class="form-control" name="numero_consultorio" id="numero_consultorio">
+                    <span>Disponibilidad</span>
+                        <select class="form-control" name="disponibilidad" id="disponibilidad">
+                            <option disabled>--Selecciona una Opcion---</option>
+                            <option value="Disponible">Disponible</option>
+                            <option value="Fuera De Servicio">Fuera de Servicio</option>
+                        </select>  
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                    <input type="submit" class="btn btn-success" value="Guardar Cambios">
+                </div>
+                </form>
+            </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
@@ -500,13 +464,7 @@ require "php/db_conect.php";
 
     <!-- Page level custom scripts -->
     <script src="js/demo/datatables-demo.js"></script>
-
-    <script>
-    //MODAL EJECUTADORES - MEDICOS
-        $("#botonagregarmedico").on("click", function() {
-        $("#modal-insert-medico").modal();
-        });
-    </script>
+    <script src="js/modal-consultorio.js"></script>
     <script src="js/app.js"></script>
 
 

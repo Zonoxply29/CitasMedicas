@@ -9,34 +9,21 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Catalogo de Especialidades</title>
+    <title>Reserva Tu Cita</title>
 
     <!-- Custom fonts for this template-->
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="/startbootstrap-sb-admin-2-gh-pages/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
     <!--iconos de bootstrap-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <!-- Custom styles for this template-->
-    <link href="css/sb-admin-2.min.css" rel="stylesheet">
-    <!-- Custom styles for this template -->
-    <link href="css/sb-admin-2.min.css" rel="stylesheet">
-
-    <!--Jquery-->
-    <script src="vendor/jquery/jquery.js"></script>
-    
-    <!--Sweet Alert Alertas Dinamicas-->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-    <!-- Custom styles for this page -->
-    <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-
-
-
-    <!--B DAY PICKER-->
-    <script src="bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
-    <script src="bootstrap-datepicker/css/bootstrap-datepicker.css"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">  
+        <!-- Custom styles for this template-->
+        <link href="/startbootstrap-sb-admin-2-gh-pages/vista_paciente/css/estilo-paciente.css" rel="stylesheet">
+        <link href="/startbootstrap-sb-admin-2-gh-pages/vista_paciente/css/bootstrap-clockpicker.css" rel="stylesheet">
+        <link href="/startbootstrap-sb-admin-2-gh-pages/vista_paciente/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+        <link href="/startbootstrap-sb-admin-2-gh-pages/css/sb-admin-2.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="fullcalendar/main.css">
 
 </head>
 
@@ -63,7 +50,7 @@
             <li class="nav-item active">
                 <a class="nav-link" href="index.html">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Inicio</span></a>
+                    <span>Incio - Calendario</span></a>
             </li>
 
             <!-- Divider -->
@@ -71,93 +58,24 @@
 
             <!-- Heading -->
             <div class="sidebar-heading">
-                Control Principal
+                Control de Citas
             </div>
 
-            <!-- Nav Item - Pages Collapse Menu -->
+            <!-- Nav Item - Citas Reservadas -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo">
+                <a class="nav-link" href="citas_reservadas.html">
                     <i class="bi bi-clipboard-check-fill"></i>
-                    <span>Citas</span>
-                </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Listado de Citas</h6>
-                        <a class="collapse-item" href="citas.html">Mostrar</a>
-                    </div>
-                </div>
+                    <span>Citas Reservadas</span></a>
             </li>
 
-            <!-- Nav Item - Utilities Collapse Menu -->
+            <!-- Nav Item - Reservar Cita -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
                     aria-expanded="true" aria-controls="collapseUtilities">
-                    <i class="bi bi-people-fill"></i>
-                    <span>Pacientes</span>
+                    <i class="bi bi-clipboard-check-fill"></i>
+                    <span>Reservar Cita</span>
                 </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Listado de Pacientes</h6>
-                        <a class="collapse-item" href="pacientes.php">Mostrar</a>
-                    </div>
-                </div>
             </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Otros
-            </div>
-
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-                    aria-expanded="true" aria-controls="collapsePages">
-                    <i class="bi bi-people-fill"></i>
-                    <span>Medicos</span>
-                </a>
-                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Listado de Medicos</h6>
-                        <a class="collapse-item" href="medicos.html">Mostrar</a>
-                    </div>
-                </div>
-            </li>
-            
-            <!-- Nav Item Asistentes - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAsistentes"
-                    aria-expanded="true" aria-controls="collapseAsistentes">
-                    <i class="bi bi-people-fill"></i>
-                    <span>Asistentes</span>
-                </a>
-                <div id="collapseAsistentes" class="collapse" aria-labelledby="headingAsistentes"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Listado de Asistentes</h6>
-                        <a class="collapse-item" href="asistentes.html">Mostrar</a>
-                    </div>
-                </div>
-            </li>
-            
-            <!-- Nav Item - Charts -->
-            <li class="nav-item">
-                <a class="nav-link" href="especialidades.html">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Especialidades Medicas</span></a>
-            </li>
-
-            <!-- Nav Item - Consultorios -->
-            <li class="nav-item">
-                <a class="nav-link" href="consultorio.html">
-                    <i class="bi bi-building-fill-add"></i>
-                    <span>Consultorios</span></a>
-            </li>
-
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -182,7 +100,7 @@
                     <!-- Sidebar Toggle (Topbar) -->
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                         <i class="fa fa-bars"></i>
-                    </button>
+                    </button> 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
 
@@ -267,8 +185,9 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Administrador</span>
-                                <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Paciente</span>
+                                <img class="img-profile rounded-circle"
+                                    src="/startbootstrap-sb-admin-2-gh-pages/img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -280,7 +199,7 @@
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Logout
+                                    Cerrar Sesion
                                 </a>
                             </div>
                         </li>
@@ -290,77 +209,66 @@
                 </nav>
                 <!-- End of Topbar -->
 
+                <!-- Begin Page Content -->
                 <div class="container-fluid">
-                    <!-- DataTales Example -->
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h4 class="m-0 font-weight-bold text-primary">Lista de Consultorios</h4>
-                            <br>
-                            <a class="btn btn-success btn-icon-split" id="botoncita">
-                                <span class="icon text-white">
-                                    <i class="bi bi-building-fill-add"></i>
-                                </span>
-                                <span class="text">Agregar Consultorio</span>
-                            </a>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th>Numero de Consultorio</th>
-                                            <th>Especialidad</th>
-                                            <th>Disponible</th> 
-                                            <th>Acciones</th>
-                                        </tr>
-                                    </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th>Numero de Consultorio</th>
-                                            <th>Especialidad</th>
-                                            <th>Disponible</th> 
-                                            <th>Acciones</th>
-                                        </tr>
-                                    </tfoot>
-                                    <tbody>
-                                        <tr>
-                                            <td>02</td>
-                                            <td>Odontologia</td>
-                                            <td>Disponible</td>
-                                            <td style="white-space: nowrap;">
-                                                <a href="#" class="btn btn-warning">
-                                                    <i class="bi bi-pencil-square"></i>
-                                                </a>
-                                                <a href="#" class="btn btn-danger delete-btn">
-                                                    <i class="bi bi-trash-fill"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>10</td>
-                                            <td>Cardiologia</td>
-                                            <td>No Disponible</td>
-                                            <td>
-                                                <a href="#" class="btn btn-warning">
-                                                    <i class="bi bi-pencil-square"></i>
-                                                </a>
-                                                <a href="#" class="btn btn-danger delete-btn">
-                                                    <i class="bi bi-trash-fill"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
 
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
+                    <!-- Page Heading -->
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-gray-800">Citas Reservadas</h1>
                     </div>
 
+                    <!-- Content Row -->
+                    <div class="row">
+                        <div class="col text-center">
+                            <h4>Especialidad</h4>
+                            <select class="form-select-lg mb-3" aria-label="Default select example">
+                                <option selected>Selecciona una Especialidad</option>
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                              </select>
+                          </div>
+                          <div class="col text-center">
+                            <h4>Medico</h4>
+                            <select class="form-select-lg mb-3" aria-label="Default select example">
+                                <option selected>Selecciona un Medico</option>
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                              </select>
+                          </div>
+                          <div class="col text-center">
+                            <h4>Fechas</h4>
+                            <select class="form-select-lg mb-3" aria-label="Default select example">
+                                <option selected>Selecciona una Fecha</option>
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                              </select>
+                          </div>
+                    </div>
+                    <!-- End of Main Content -->
+
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Sistema Gestion de Citas &copy; SGCM</span>
+                    </div>
                 </div>
-            </div>
+            </footer>
+            <!-- End of Footer -->
+
         </div>
+        <!-- End of Content Wrapper -->
+
     </div>
-    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
 
     <!-- Logout Modal-->
     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -382,54 +290,23 @@
         </div>
     </div>
 
-    <!--Agregar Medicos Modal-->
-
-    <div class="modal fade" id="modal-date" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Agregar Nueva Especialidad</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                            aria-hidden="true">&times;</span></button>
-                </div>
-                <div class="modal-body">
-                    <form>
-
-                        <span>Nombre Especialidad *</span>
-                        <input type="text" class="form-control">
-                            
-                
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-success">Agregar Medico</button>
-                </div>
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
-
     <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/startbootstrap-sb-admin-2-gh-pages/vendor/jquery/jquery.min.js"></script>
+    <script src="/startbootstrap-sb-admin-2-gh-pages/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="/startbootstrap-sb-admin-2-gh-pages/vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
+    <script src="/startbootstrap-sb-admin-2-gh-pages/js/sb-admin-2.min.js"></script>
 
     <!-- Page level plugins -->
-    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <script src="/startbootstrap-sb-admin-2-gh-pages/vendor/chart.js/Chart.min.js"></script>
 
     <!-- Page level custom scripts -->
-    <script src="js/demo/datatables-demo.js"></script>
-
-
-    <script src="js/app.js"></script>
-
-
+    <script src="/startbootstrap-sb-admin-2-gh-pages/js/demo/chart-area-demo.js"></script>
+    <script src="/startbootstrap-sb-admin-2-gh-pages/js/demo/chart-pie-demo.js"></script>
+    
 </body>
 
 </html>
